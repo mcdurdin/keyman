@@ -27,7 +27,7 @@ $setup_exe = "setup.exe"
 # Debug files
 $debug_zip = "debug-$build_number.zip"
 
-$7Z_HOME = $env:7Z_HOME
+$7Z_HOME = $env:SEVENZ_HOME
 $RSYNC_HOME = $env:RSYNC_HOME
 $RSYNC_PATH = $env:RSYNC_PATH
 $RSYNC_USER = $env:RSYNC_USER
