@@ -85,7 +85,7 @@ export class ElementString extends Array<ElemElement> {
         if (!uset) {
           return null; // UnicodeSet error already added to callback
         }
-        elem.uset = sections.uset.allocUset(uset, sections, options?.compileContext;
+        elem.uset = sections.uset.allocUset(uset, sections, options?.compileContext);
         elem.value = sections.strs.allocString('', {...options, singleOk: true}); // no string
       } else if (item.type === ElementType.codepoint || item.type === ElementType.escaped || item.type === ElementType.string) {
         // some kind of a string

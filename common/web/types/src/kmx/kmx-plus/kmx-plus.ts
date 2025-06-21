@@ -379,8 +379,8 @@ export class VarsItem extends Section {
   constructor(id: string, value: string, sections: DependencySections, compileContext?: any) {
     super();
     this.id = sections.strs.allocString(id);
-    this.value = sections.strs.allocString(value, {unescape: true});
-    this.compileContext = x;
+    this.value = sections.strs.allocString(value, { unescape: true });
+    this.compileContext = compileContext;
   }
 
   valid() : boolean {
@@ -390,10 +390,10 @@ export class VarsItem extends Section {
 
 export class UnicodeSetItem extends VarsItem {
   constructor(id: string, value: string, sections: DependencySections, usetparser: UnicodeSetParser, compileContext?: any) {
-    super(id, value, sections, x);
+    super(id, value, sections, compileContext);
     const needRanges = sections.usetparser.sizeUnicodeSet(value);
     if (needRanges >= 0) {
-      this.unicodeSet = sections.usetparser.parseUnicodeSet(value, needRanges, x);
+      this.unicodeSet = sections.usetparser.parseUnicodeSet(value, needRanges, compileContext);
     } // otherwise: error (was recorded via callback)
   }
   unicodeSet?: UnicodeSet;

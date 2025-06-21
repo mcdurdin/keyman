@@ -216,8 +216,8 @@ export class CompilerError {
    * @returns modified event object
    */
   public static setFromMetadata(event: CompilerEvent, compileContext?: ObjectWithCompileContext): CompilerEvent {
-    if(x) {
-      const metadata = KeymanXMLReader.getMetaData(x) || {};
+    if (compileContext) {
+      const metadata = KeymanXMLReader.getMetaData(compileContext) || {};
       const offset = metadata?.startIndex;
       if (offset) {
         event.offset = offset;
