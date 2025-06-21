@@ -141,7 +141,7 @@ export class StrsItem {
   /** add any context from the options to this strsitem */
   setContext(opts?: StrsOptions) {
     // At present, there's only a single piece of context available
-    this._context = this._context || opts?.x;
+    this._context = this._context || opts?.compileContext;
   }
 
   get context() : any {
@@ -380,7 +380,7 @@ export class VarsItem extends Section {
     super();
     this.id = sections.strs.allocString(id);
     this.value = sections.strs.allocString(value, {unescape: true});
-    this.x = x;
+    this.compileContext = x;
   }
 
   valid() : boolean {
