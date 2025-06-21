@@ -11,7 +11,7 @@ import { KeymanXMLReader, SymbolUtils } from "@keymanapp/developer-utils";
 export function compareXml(actual : string, expect: string, mutator?: (input: any) => any) {
     if (!mutator) {
         // no-op
-        mutator = (x: any) => x;
+        mutator = (compileContext: any) => x;
     }
     const reader = new KeymanXMLReader('keyboard3');
 

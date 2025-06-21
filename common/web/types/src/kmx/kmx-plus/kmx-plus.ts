@@ -174,7 +174,7 @@ export interface StrsOptions {
   /** string can be stored as a single CharStrsItem, not in strs table. */
   singleOk?: boolean;
   /** optional context */
-  x?: any;
+  compileContext?: any;
 };
 
 export class Strs extends Section {
@@ -374,9 +374,9 @@ export class Vars extends Section {
 export class VarsItem extends Section {
   id: StrsItem;
   value: StrsItem;
-  x?: any;
+  compileContext?: any;
 
-  constructor(id: string, value: string, sections: DependencySections, x?: any) {
+  constructor(id: string, value: string, sections: DependencySections, compileContext?: any) {
     super();
     this.id = sections.strs.allocString(id);
     this.value = sections.strs.allocString(value, {unescape: true});
@@ -389,7 +389,7 @@ export class VarsItem extends Section {
 };
 
 export class UnicodeSetItem extends VarsItem {
-  constructor(id: string, value: string, sections: DependencySections, usetparser: UnicodeSetParser, x?: any) {
+  constructor(id: string, value: string, sections: DependencySections, usetparser: UnicodeSetParser, compileContext?: any) {
     super(id, value, sections, x);
     const needRanges = sections.usetparser.sizeUnicodeSet(value);
     if (needRanges >= 0) {
@@ -403,7 +403,7 @@ export class UnicodeSetItem extends VarsItem {
 };
 
 export class SetVarItem extends VarsItem {
-  constructor(id: string, value: string[], sections: DependencySections, x?: any) {
+  constructor(id: string, value: string[], sections: DependencySections, compileContext?: any) {
     super(id, value.join(' '), sections, x);
     this.items = sections.elem.allocElementString(sections, {x}, value);
   }
@@ -414,7 +414,7 @@ export class SetVarItem extends VarsItem {
 };
 
 export class StringVarItem extends VarsItem {
-  constructor(id: string, value: string, sections: DependencySections, x?: any) {
+  constructor(id: string, value: string, sections: DependencySections, compileContext?: any) {
     super(id, value, sections, x);
   }
   // no added fields
@@ -453,7 +453,7 @@ export class Tran extends Section {
 };
 
 export class UsetItem {
-  constructor(public uset: UnicodeSet, public str: StrsItem, public x?: any) {
+  constructor(public uset: UnicodeSet, public str: StrsItem, public compileContext?: any) {
   }
   compareTo(other: UsetItem) : number {
     return this.str.compareTo(other.str);
@@ -462,7 +462,7 @@ export class UsetItem {
 
 export class Uset extends Section {
   usets: UsetItem[] = [];
-  allocUset(set: UnicodeSet, sections: DependencySections, x?: any) : UsetItem {
+  allocUset(set: UnicodeSet, sections: DependencySections, compileContext?: any) : UsetItem {
     // match the same pattern
     let result = this.usets.find(s => set.pattern == s.uset.pattern);
     if (result === undefined) {

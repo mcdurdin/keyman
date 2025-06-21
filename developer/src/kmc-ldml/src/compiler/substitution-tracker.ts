@@ -40,7 +40,7 @@ export class SubstitutionTracker {
    * @param verb what kind of use we are adding
    * @param markers list of substitutions to add
    */
-  add(verb: SubstitutionUse, markers: string[], x?: ObjectWithCompileContext) {
+  add(verb: SubstitutionUse, markers: string[], compileContext?: ObjectWithCompileContext) {
     if (!markers.length) {
       return; // skip if empty
     }
@@ -77,20 +77,20 @@ export class SubstitutionTracker {
 
 /** rollup of several substitution types */
 export class Substitutions {
-  addSetAndStringSubtitution(verb: SubstitutionUse, str?: string, x?: ObjectWithCompileContext) {
+  addSetAndStringSubtitution(verb: SubstitutionUse, str?: string, compileContext?: ObjectWithCompileContext) {
     this.set.add(verb, LdmlKeyboardTypes.VariableParser.allSetReferences(str), x);
     this.addStringAndMarkerSubstitution(verb, str, x);
   }
   /** add a string that can have string var substitutions or markers */
-  addStringAndMarkerSubstitution(verb: SubstitutionUse, str?: string, x?: ObjectWithCompileContext) {
+  addStringAndMarkerSubstitution(verb: SubstitutionUse, str?: string, compileContext?: ObjectWithCompileContext) {
     this.addMarkers(verb, str, x);
     this.addStringSubstitution(verb, str, x);
   }
-  addStringSubstitution(verb: SubstitutionUse, str?: string, x?: ObjectWithCompileContext) {
+  addStringSubstitution(verb: SubstitutionUse, str?: string, compileContext?: ObjectWithCompileContext) {
     this.string.add(verb, LdmlKeyboardTypes.VariableParser.allStringReferences(str), x);
   }
   /** add a string that's just markers */
-  addMarkers(verb: SubstitutionUse, str?: string, x?: ObjectWithCompileContext) {
+  addMarkers(verb: SubstitutionUse, str?: string, compileContext?: ObjectWithCompileContext) {
     this.markers.add(verb, LdmlKeyboardTypes.MarkerParser.allReferences(str), x);
     LdmlKeyboardTypes.MarkerParser.allBrokenReferences(str).forEach(m => this.badMarkers.set(m, x));
   }

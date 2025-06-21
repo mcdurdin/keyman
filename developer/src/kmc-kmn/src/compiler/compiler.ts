@@ -530,7 +530,7 @@ export class KmnCompiler implements KeymanCompiler, LdmlKeyboardTypes.UnicodeSet
    * @param rangeCount - number of ranges to allocate
    * @returns            UnicodeSet accessor object, or null on failure
    */
-  public parseUnicodeSet(pattern: string, rangeCount: number, x?: any) : LdmlKeyboardTypes.UnicodeSet | null {
+  public parseUnicodeSet(pattern: string, rangeCount: number, compileContext?: any) : LdmlKeyboardTypes.UnicodeSet | null {
     if(!this.verifyInitialized()) {
       /* c8 ignore next 2 */
       // verifyInitialized will set a callback if needed
@@ -571,7 +571,7 @@ export class KmnCompiler implements KeymanCompiler, LdmlKeyboardTypes.UnicodeSet
   /**
    * @internal
    */
-  public sizeUnicodeSet(pattern: string, x?: any) : number {
+  public sizeUnicodeSet(pattern: string, compileContext?: any) : number {
     if(!this.verifyInitialized()) {
       /* c8 ignore next 2 */
       return null;
@@ -594,7 +594,7 @@ export class KmnCompiler implements KeymanCompiler, LdmlKeyboardTypes.UnicodeSet
  * @param rc parseUnicodeSet error code
  * @returns the compiler event
  */
-function getUnicodeSetError(rc: number, x?: any) : CompilerEvent {
+function getUnicodeSetError(rc: number, compileContext?: any) : CompilerEvent {
   // from kmcmplib.h
   const KMCMP_ERROR_SYNTAX_ERR = -1;
   const KMCMP_ERROR_HAS_STRINGS = -2;

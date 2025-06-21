@@ -107,7 +107,7 @@ export class KmnCompilerMessages {
   );
 
   static FATAL_UnicodeSetOutOfRange = SevFatal | 0x904;
-  static Fatal_UnicodeSetOutOfRange = (x?: ObjectWithCompileContext) => mx(
+  static Fatal_UnicodeSetOutOfRange = (compileContext?: ObjectWithCompileContext) => mx(
     this.FATAL_UnicodeSetOutOfRange, x,
     `UnicodeSet buffer was too small`,
     `Raised when caller to UnicodeSet functions provides an invalid buffer. If
@@ -118,7 +118,7 @@ export class KmnCompilerMessages {
   // TODO: rename the following functions to Error_UsetHasStrings etc
 
   static ERROR_UnicodeSetHasStrings = SevError | 0x905;
-  static Error_UnicodeSetHasStrings = (x?: ObjectWithCompileContext) => mx(
+  static Error_UnicodeSetHasStrings = (compileContext?: ObjectWithCompileContext) => mx(
     this.ERROR_UnicodeSetHasStrings, x,
     `uset contains strings, not allowed`,
     `The provided uset uses multi-character strings, (\`{}\` notation, e.g.
@@ -130,7 +130,7 @@ export class KmnCompilerMessages {
   );
 
   static ERROR_UnicodeSetHasProperties = SevError | 0x906;
-  static Error_UnicodeSetHasProperties = (x?: ObjectWithCompileContext) => mx(
+  static Error_UnicodeSetHasProperties = (compileContext?: ObjectWithCompileContext) => mx(
     this.ERROR_UnicodeSetHasProperties, x,
     `uset contains properties, not allowed`,
     `The provided uset uses property notation (\`\\p{…}\` or \`[:…:]\`). LDML
@@ -142,7 +142,7 @@ export class KmnCompilerMessages {
   );
 
   static ERROR_UnicodeSetSyntaxError = SevError | 0x907;
-  static Error_UnicodeSetSyntaxError = (x?: ObjectWithCompileContext) => mx(
+  static Error_UnicodeSetSyntaxError = (compileContext?: ObjectWithCompileContext) => mx(
     this.ERROR_UnicodeSetSyntaxError, x,
     `uset had a Syntax Error while parsing`,
     `The provided uset has a syntax error and could not be parsed. Verify the

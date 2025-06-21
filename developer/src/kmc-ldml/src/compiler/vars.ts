@@ -40,7 +40,7 @@ export class VarsCompiler extends SectionCompiler {
     return valid;
   }
 
-  private validateIdentifier(id: string, x?: ObjectWithCompileContext) {
+  private validateIdentifier(id: string, compileContext?: ObjectWithCompileContext) {
     if(!id.match(LdmlKeyboardTypes.VariableParser.ID)) { // From <string> DTD
       this.callbacks.reportMessage(LdmlCompilerMessages.Error_InvalidVariableIdentifier({id}, x));
       return false;

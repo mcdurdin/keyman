@@ -237,7 +237,7 @@ export abstract class TransformCompiler<T extends TransformCompilerType, TranBas
    * We have already checked that it's not a mapTo,
    * so there should not be any illegal substitutions.
    */
-  private isValidTo(to: string, x?: ObjectWithCompileContext) : boolean {
+  private isValidTo(to: string, compileContext?: ObjectWithCompileContext) : boolean {
     if (/(?<!\\)(?:\\\\)*\$\[/.test(to)) {
       this.callbacks.reportMessage(LdmlCompilerMessages.Error_IllegalTransformToUset({ to }, x));
       return false;
@@ -251,7 +251,7 @@ export abstract class TransformCompiler<T extends TransformCompilerType, TranBas
    * @param from the original from - for error reporting
    * @returns true if OK
    */
-  private isValidRegex(cookedFrom: string, from: string, x?: ObjectWithCompileContext) : boolean {
+  private isValidRegex(cookedFrom: string, from: string, compileContext?: ObjectWithCompileContext) : boolean {
     // check for any unescaped dollar sign here
     if (/(?<!\\)(?:\\\\)*\$/.test(cookedFrom)) {
       this.callbacks.reportMessage(LdmlCompilerMessages.Error_IllegalTransformDollarsign({ from }, x));
