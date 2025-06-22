@@ -1,5 +1,5 @@
 import { LdmlKeyboardTypes } from "@keymanapp/common-types";
-import { ObjectWithCompileContext } from "@keymanapp/developer-utils";
+import { ObjectWithCompileContext } from '@keymanapp/common-types';
 
 /**
  * Verb for SubstitutionTracker.add()

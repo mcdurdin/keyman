@@ -404,8 +404,8 @@ export class UnicodeSetItem extends VarsItem {
 
 export class SetVarItem extends VarsItem {
   constructor(id: string, value: string[], sections: DependencySections, compileContext?: any) {
-    super(id, value.join(' '), sections, x);
-    this.items = sections.elem.allocElementString(sections, {x}, value);
+    super(id, value.join(' '), sections, compileContext);
+    this.items = sections.elem.allocElementString(sections, { compileContext }, value);
   }
   items: ElementString;  // element string array
   valid() : boolean {
@@ -415,7 +415,7 @@ export class SetVarItem extends VarsItem {
 
 export class StringVarItem extends VarsItem {
   constructor(id: string, value: string, sections: DependencySections, compileContext?: any) {
-    super(id, value, sections, x);
+    super(id, value, sections, compileContext);
   }
   // no added fields
 };
@@ -466,7 +466,7 @@ export class Uset extends Section {
     // match the same pattern
     let result = this.usets.find(s => set.pattern == s.uset.pattern);
     if (result === undefined) {
-      result = new UsetItem(set, sections.strs.allocString(set.pattern), x);
+      result = new UsetItem(set, sections.strs.allocString(set.pattern), compileContext);
       this.usets.push(result);
     }
     return result;

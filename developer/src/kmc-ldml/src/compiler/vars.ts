@@ -1,6 +1,7 @@
 import { SectionIdent, constants } from "@keymanapp/ldml-keyboard-constants";
 import { KMXPlus, LdmlKeyboardTypes } from '@keymanapp/common-types';
-import { LDMLKeyboard, CompilerCallbacks, ObjectWithCompileContext } from '@keymanapp/developer-utils';
+import { ObjectWithCompileContext } from "@keymanapp/common-types";
+import { LDMLKeyboard, CompilerCallbacks } from '@keymanapp/developer-utils';
 import { SectionCompiler } from "./section-compiler.js";
 import Vars = KMXPlus.Vars;
 import StringVarItem = KMXPlus.StringVarItem;
