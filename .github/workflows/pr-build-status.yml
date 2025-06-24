@@ -13,8 +13,7 @@
 #
 name: Keyman Build Summary
 on:
-  check_run:
-    types: [completed]
+  status:
   push:
     branches:
       - '!master'
@@ -34,7 +33,7 @@ jobs:
       - name: Print check run information
         shell: bash
         run: |
-          echo "{{github.event.}}"
+          echo "${{github.event}}"
       - name: Check PR build status
         id: run_pr_build_status_script
         uses: actions/github-script@v7
@@ -199,7 +198,12 @@ jobs:
             }
 
             const { owner, repo } = context.repo;
-            const sha = context.payload?.check_suite?.sha || context.sha || github.event.workflow_dispatch.inputs.commit;
+            const sha = context.payload?.check_suite?.sha || context.sha || github?.event?.workflow_dispatch?.inputs?.commit;
+
+            console.dir(context.payload?.check_suite?.sha);
+            console.dir(context.sha);
+            console.dir(github?.event?.workflow_dispatch?.inputs?.commit);
+
             const checkRunId = await createCheck(github, owner, repo, sha);
             const res = await test(github, owner, repo, sha);
             await updateCheck(github, owner, repo, checkRunId, res[0], res[1]);
