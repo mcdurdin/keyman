@@ -201,8 +201,8 @@ jobs:
             const sha = context.payload?.check_suite?.sha || context.sha || github?.event?.workflow_dispatch?.inputs?.commit;
 
             console.dir(context.payload?.check_suite?.sha);
+            console.dir(github?.event?);
             console.dir(context.sha);
-            console.dir(github?.event?.workflow_dispatch?.inputs?.commit);
 
             const checkRunId = await createCheck(github, owner, repo, sha);
             const res = await test(github, owner, repo, sha);
