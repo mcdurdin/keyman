@@ -7,6 +7,8 @@
  * develop the YAML script without introducing a dependency on the repository.
  */
 
+// Need to get data out of .yml for diagnostic purposes
+
 // CLONE:START
             // This code is copied out of resources/build/pr-build-status/pr-build-status.mjs
             // where it is tested. It is copied inline here in order to avoid requiring the
