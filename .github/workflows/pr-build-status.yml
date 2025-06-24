@@ -15,10 +15,10 @@ name: Keyman Build Summary
 on:
   status:
   push:
-    branches:
-      - '!master'
-      - '!beta'
-      - '!stable-*'
+    branches-ignore:
+      - master
+      - beta
+      - stable-*
   workflow_dispatch:
     inputs:
       commit:
