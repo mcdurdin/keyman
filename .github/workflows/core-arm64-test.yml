@@ -105,6 +105,7 @@ jobs:
       run: |
         echo "Python=$pythonLocation"
         export PATH="$PATH:$pythonLocation/Scripts"
+        export KEYMAN_CI_SKIP_NVM=1
         ./core/build.sh configure,build,test:arm64
 
   set_status:
