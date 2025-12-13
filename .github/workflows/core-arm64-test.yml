@@ -61,6 +61,8 @@ jobs:
         npm -v
         node -v
 
+    - uses: actions/setup-python@v6
+
     - uses: actions/setup-node@v6
       with:
         # This needs to be kept in sync with minimum-versions.sh
