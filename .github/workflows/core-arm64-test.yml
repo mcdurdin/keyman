@@ -75,9 +75,8 @@ jobs:
     - name: Install emscripten
       shell: bash
       run: |
-        pushd
         mkdir ../emsdk
-        cd ../emsdk
+        pushd ../emsdk
         export EMSDK_KEEP_DOWNLOADS=1
         # shellcheck disable=SC2164
         git clone https://github.com/emscripten-core/emsdk.git
