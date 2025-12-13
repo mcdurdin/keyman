@@ -90,6 +90,11 @@ jobs:
         export EMSCRIPTEN_BASE="$(pwd)"
         export KEYMAN_USE_EMSDK=1
         popd
+        
+    - name: Install meson
+      shell: bash
+      run: |
+        pip3 install --user meson
 
     - name: Run test
       shell: bash
