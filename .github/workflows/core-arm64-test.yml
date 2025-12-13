@@ -92,6 +92,7 @@ jobs:
         popd
 
     - name: Run test
+      shell: bash
       run: |
         ./core/build.sh configure,build,test:arm64
 
