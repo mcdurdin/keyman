@@ -106,6 +106,13 @@ jobs:
         echo "Python=$pythonLocation"
         export PATH="$PATH:$pythonLocation/Scripts"
         export KEYMAN_CI_SKIP_NVM=1
+        # ngrok not yet supported on ARM, not needed
+        # for testing Core, unfortunately npm installs
+        # all deps, even unnecessary ones
+        cd developer/src/server
+        npm uninstall ngrok
+        cd ../../..
+        # Run the test
         ./core/build.sh configure,build,test:arm64
 
   set_status:
