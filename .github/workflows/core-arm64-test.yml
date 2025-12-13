@@ -103,6 +103,8 @@ jobs:
     - name: Run test
       shell: bash
       run: |
+        echo "Python=$pythonLocation"
+        export PATH="$PATH:$pythonLocation/Scripts"
         ./core/build.sh configure,build,test:arm64
 
   set_status:
