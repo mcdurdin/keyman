@@ -75,6 +75,7 @@ jobs:
     - name: Install emscripten
       shell: bash
       run: |
+        source resources/build/minimum-versions.inc.sh
         mkdir ../emsdk
         pushd ../emsdk
         export EMSDK_KEEP_DOWNLOADS=1
