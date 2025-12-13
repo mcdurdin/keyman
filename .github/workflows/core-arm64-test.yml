@@ -79,6 +79,8 @@ jobs:
         mkdir ../emsdk
         pushd ../emsdk
         export EMSDK_KEEP_DOWNLOADS=1
+        # As of Dec 2025, Emscripten does not support Win11 ARM natively
+        export EMSDK_ARCH=x86_64
         # shellcheck disable=SC2164
         git clone https://github.com/emscripten-core/emsdk.git
         # shellcheck disable=SC2164
