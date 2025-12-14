@@ -107,7 +107,9 @@ jobs:
         cd emsdk
         ./emsdk install "${KEYMAN_MIN_VERSION_EMSCRIPTEN}"
         ./emsdk activate "${KEYMAN_MIN_VERSION_EMSCRIPTEN}"
-        echo "EMSCRIPTEN_BASE=$(pwd)/upstream/emscripten" >> $GITHUB_ENV
+        cd upstream/emscripten
+        npm install
+        echo "EMSCRIPTEN_BASE=$(pwd)" >> $GITHUB_ENV
         popd
         
     - name: Install meson
