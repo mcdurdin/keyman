@@ -110,7 +110,7 @@ jobs:
         ./emsdk install "${KEYMAN_MIN_VERSION_EMSCRIPTEN}"
         ./emsdk activate "${KEYMAN_MIN_VERSION_EMSCRIPTEN}"
         cd upstream/emscripten
-        npm install
+        npm install --cpu=x64
         echo "EMSCRIPTEN_BASE=$(pwd)" >> $GITHUB_ENV
         popd
         
