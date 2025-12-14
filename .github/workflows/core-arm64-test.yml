@@ -91,8 +91,8 @@ jobs:
         cd emsdk
         ./emsdk install "${KEYMAN_MIN_VERSION_EMSCRIPTEN}"
         ./emsdk activate "${KEYMAN_MIN_VERSION_EMSCRIPTEN}"
-        export EMSCRIPTEN_BASE="$(pwd)"
-        export KEYMAN_USE_EMSDK=1
+        echo "EMSCRIPTEN_BASE=$(pwd)" >> $GITHUB_ENV
+        echo "KEYMAN_USE_EMSDK=1" >> $GITHUB_ENV
         popd
         
     - name: Install meson
