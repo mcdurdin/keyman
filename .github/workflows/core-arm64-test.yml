@@ -71,10 +71,31 @@ jobs:
         node-version: '20.19'
 
     - name: Report current npm/node versions
+      shell: bash
       run: |
         echo "Current npm/node versions"
         npm -v
         node -v
+
+    - name: Setup environment
+      shell: bash
+      run: |
+        echo "-- Environment --"
+        echo "pythonLocation=$pythonLocation"
+
+        # As of Dec 2025, Emscripten does not support Win11 ARM natively
+        echo "EMSDK_ARCH=x86_64" >> $GITHUB_ENV
+        echo "EMSDK_KEEP_DOWNLOADS=1" >> $GITHUB_ENV
+        echo "KEYMAN_USE_EMSDK=1" >> $GITHUB_ENV
+
+        echo "PATH=$PATH:$pythonLocation/Scripts" >> $GITHUB_ENV
+        
+        echo "KEYMAN_CI_SKIP_NVM=1" >> $GITHUB_ENV
+        
+        # As of Dec 2025, ngrok not yet supported on ARM Windows,
+        # so this is needed to avoid `npm ci` failure, even though
+        # we don't use ngrok directly
+        echo "NGROK_ARCH=win32x64" >> $GITHUB_ENV
 
     - name: Install emscripten
       shell: bash
@@ -82,17 +103,11 @@ jobs:
         source resources/build/minimum-versions.inc.sh
         mkdir ../emsdk
         pushd ../emsdk
-        export EMSDK_KEEP_DOWNLOADS=1
-        # As of Dec 2025, Emscripten does not support Win11 ARM natively
-        export EMSDK_ARCH=x86_64
-        # shellcheck disable=SC2164
         git clone https://github.com/emscripten-core/emsdk.git
-        # shellcheck disable=SC2164
         cd emsdk
         ./emsdk install "${KEYMAN_MIN_VERSION_EMSCRIPTEN}"
         ./emsdk activate "${KEYMAN_MIN_VERSION_EMSCRIPTEN}"
         echo "EMSCRIPTEN_BASE=$(pwd)/upstream/emscripten" >> $GITHUB_ENV
-        echo "KEYMAN_USE_EMSDK=1" >> $GITHUB_ENV
         popd
         
     - name: Install meson
@@ -103,14 +118,6 @@ jobs:
     - name: Run test
       shell: bash
       run: |
-        echo "Python=$pythonLocation"
-        export PATH="$PATH:$pythonLocation/Scripts"
-        export KEYMAN_CI_SKIP_NVM=1
-        
-        # ngrok not yet supported on ARM Windows,
-        # so this is needed to avoid `npm ci` failure
-        export NGROK_ARCH=win32x64
-
         # Run the test
         ./core/build.sh configure,build,test:arm64
 
