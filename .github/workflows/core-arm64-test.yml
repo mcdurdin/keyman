@@ -69,6 +69,7 @@ jobs:
       with:
         # This needs to be kept in sync with minimum-versions.sh
         node-version: '20.19'
+        architecture: x64
 
     - name: Report current npm/node versions
       shell: bash
@@ -110,7 +111,7 @@ jobs:
         ./emsdk install "${KEYMAN_MIN_VERSION_EMSCRIPTEN}"
         ./emsdk activate "${KEYMAN_MIN_VERSION_EMSCRIPTEN}"
         cd upstream/emscripten
-        npm install --cpu=x64
+        npm install
         echo "EMSCRIPTEN_BASE=$(pwd)" >> $GITHUB_ENV
         popd
         
