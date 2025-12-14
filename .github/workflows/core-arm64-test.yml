@@ -97,6 +97,8 @@ jobs:
         # we don't use ngrok directly
         echo "NGROK_ARCH=win32x64" >> $GITHUB_ENV
 
+        echo npm_config_cpu=x64 >> $GITHUB_ENV
+
     - name: Install emscripten
       shell: bash
       run: |
