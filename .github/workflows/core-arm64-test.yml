@@ -91,7 +91,7 @@ jobs:
         cd emsdk
         ./emsdk install "${KEYMAN_MIN_VERSION_EMSCRIPTEN}"
         ./emsdk activate "${KEYMAN_MIN_VERSION_EMSCRIPTEN}"
-        echo "EMSCRIPTEN_BASE=$(pwd)" >> $GITHUB_ENV
+        echo "EMSCRIPTEN_BASE=$(pwd)/upstream/emscripten" >> $GITHUB_ENV
         echo "KEYMAN_USE_EMSDK=1" >> $GITHUB_ENV
         popd
         
