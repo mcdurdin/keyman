@@ -97,12 +97,12 @@ jobs:
         # so this is needed to avoid `npm ci` failure, even though
         # we don't use ngrok directly (this may not be necessary
         # with node x64 already installed, but doesn't hurt)
-        echo "NGROK_ARCH=win32x64" >> $GITHUB_ENV
+        # echo "NGROK_ARCH=win32x64" >> $GITHUB_ENV
 
         # For google-closure-compiler and others, we want to
         # force x64 host (this may not be necessary with node x64
         # already installed, but doesn't hurt)
-        echo npm_config_cpu=x64 >> $GITHUB_ENV
+        # echo npm_config_cpu=x64 >> $GITHUB_ENV
 
     - name: Install emscripten
       shell: bash
